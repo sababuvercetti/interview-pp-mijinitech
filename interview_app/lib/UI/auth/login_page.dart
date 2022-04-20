@@ -73,7 +73,7 @@ class LoginPage extends ConsumerWidget {
                             email: formKey.currentState!.value['email'],
                             password: formKey.currentState!.value['password'])
                         .then((value) {
-                          Fluttertoast.showToast(
+                      Fluttertoast.showToast(
                           msg: "Successfully logged in",
                           toastLength: Toast.LENGTH_LONG,
                           gravity: ToastGravity.CENTER,
@@ -82,7 +82,7 @@ class LoginPage extends ConsumerWidget {
                           textColor: Colors.white,
                           fontSize: 16.0);
                       AutoRouter.of(context)
-                          .push(HomeRoute(userCredential: value!));
+                          .replace(HomeRoute(userCredential: value!));
                     }).catchError((error) {
                       showCupertinoDialog(
                           context: context,
