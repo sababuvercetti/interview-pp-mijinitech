@@ -1,11 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:interview_app/providers/auth_provider.dart';
+import 'package:interview_app/routes/router.gr.dart';
 import 'package:provider/provider.dart';
 import 'package:interview_app/providers/global_providers.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ResetPasswordPage extends ConsumerWidget {
   void updateEmail(BuildContext context, String email) {
@@ -32,7 +35,7 @@ class ResetPasswordPage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Sign up',
+                'Reset password',
                 style: TextStyle(
                   fontSize: 24,
                 ),
@@ -50,25 +53,24 @@ class ResetPasswordPage extends ConsumerWidget {
               const SizedBox(
                 height: 20,
               ),
-              FormBuilderTextField(
-                name: 'password',
-                onChanged: (value) => updatePassword(context, value!),
-                decoration: const InputDecoration(labelText: 'Password'),
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                ]),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               CupertinoButton(
                 onPressed: () async {
                   if (formKey.currentState!.saveAndValidate()) {
                     await _auth
-                        .signUp(
-                            email: formKey.currentState!.value['email'],
-                            password: formKey.currentState!.value['password'])
-                        .catchError((error) {
+                        .resetPassword(
+                      email: formKey.currentState!.value['email'],
+                    )
+                        .then((value) {
+                          Fluttertoast.showToast(
+                          msg: "Check your email",
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.green,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                      AutoRouter.of(context).push(LoginRoute());
+                    }).catchError((error) {
                       showCupertinoDialog(
                           context: context,
                           builder: (context) => CupertinoAlertDialog(
@@ -78,7 +80,7 @@ class ResetPasswordPage extends ConsumerWidget {
                   }
                 },
                 color: Colors.blue,
-                child: const Text('Sign up'),
+                child: const Text('Reset password'),
               ),
             ],
           ),

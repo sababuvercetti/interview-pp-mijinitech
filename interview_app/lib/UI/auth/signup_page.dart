@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:interview_app/providers/auth_provider.dart';
+import 'package:interview_app/routes/router.gr.dart';
 import 'package:provider/provider.dart';
 import 'package:interview_app/providers/global_providers.dart';
 
@@ -68,7 +71,18 @@ class SignUpPage extends ConsumerWidget {
                         .signUp(
                             email: formKey.currentState!.value['email'],
                             password: formKey.currentState!.value['password'])
-                        .catchError((error) {
+                        .then((value) {
+                      Fluttertoast.showToast(
+                          msg: "Successfully signed up",
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.green,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                      AutoRouter.of(context)
+                          .replace(HomeRoute(userCredential: value));
+                    }).catchError((error) {
                       showCupertinoDialog(
                           context: context,
                           builder: (context) => CupertinoAlertDialog(
