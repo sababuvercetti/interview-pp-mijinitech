@@ -25,15 +25,15 @@ class AppRouter extends _i4.RootStackRouter {
   final Map<String, _i4.PageFactory> pagesMap = {
     LoginRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.LoginPage());
+          routeData: routeData, child: _i1.LoginPage());
     },
     SignUpRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.SignUpPage());
+          routeData: routeData, child: _i2.SignUpPage());
     },
     ResetPasswordRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i3.ResetPasswordPage());
+          routeData: routeData, child: _i3.ResetPasswordPage());
     }
   };
 
