@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:interview_app/UI/auth/login_page.dart';
-import 'package:interview_app/UI/auth/new_password_page.dart';
 import 'package:interview_app/UI/auth/reset_password_page.dart';
 import 'package:interview_app/UI/auth/signup_page.dart';
+import 'package:interview_app/UI/home/breed_detail_page.dart';
 import 'package:interview_app/UI/home/home_page.dart';
 
 @MaterialAutoRouter(
@@ -12,6 +12,7 @@ import 'package:interview_app/UI/home/home_page.dart';
     AutoRoute(page: SignUpPage),
     AutoRoute(page: ResetPasswordPage),
     AutoRoute(page: HomePage),
+    AutoRoute(page: BreedDetailPage),
   ],
 )
 class $AppRouter {}
