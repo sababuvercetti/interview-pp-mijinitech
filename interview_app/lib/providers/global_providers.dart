@@ -12,6 +12,22 @@ class EmailProvider extends StateNotifier<String> {
   }
 }
 
+class CodeProvider extends StateNotifier<String> {
+  CodeProvider() : super('');
+
+  void save(String e) {
+    state = e;
+  }
+}
+
+class HomeBottomIndexProvider extends StateNotifier<int> {
+  HomeBottomIndexProvider() : super(0);
+
+  void save(int e) {
+    state = e;
+  }
+}
+
 final passwordProvider = StateProvider<PasswordProvider>((ref) {
   return PasswordProvider();
 });
