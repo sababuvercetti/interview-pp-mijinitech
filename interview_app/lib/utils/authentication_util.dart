@@ -32,6 +32,28 @@ class AuthenticationUtil {
     }
   }
 
+  Future resetPassword({
+    required String email,
+  }) async {
+    try {
+      await firebaseAuth.sendPasswordResetEmail(
+        email: email,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw e.message!;
+    }
+  }
+
+  Future enterResetVerifyCode(
+      {required String code, required String newPassword}) async {
+    try {
+      await firebaseAuth.confirmPasswordReset(
+          code: code, newPassword: newPassword);
+    } on FirebaseAuthException catch (e) {
+      throw e.message!;
+    }
+  }
+
   Future<void> signout() async {
     await firebaseAuth.signOut();
   }
