@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 void main() {
+  
   runApp(const MyApp());
 }
 
@@ -11,7 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Interview APp',
+      supportedLocales: [
+        Locale('en'),
+      ],
+       localizationsDelegates: [
+        FormBuilderLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
       theme: ThemeData(
         // This is the theme of your application.
         //
