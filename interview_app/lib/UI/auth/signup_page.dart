@@ -35,7 +35,7 @@ class SignUpPage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Sign up',
+                'Sign up now',
                 style: TextStyle(
                   fontSize: 24,
                 ),

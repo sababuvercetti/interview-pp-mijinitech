@@ -65,35 +65,38 @@ class LoginPage extends ConsumerWidget {
               const SizedBox(
                 height: 20,
               ),
-              CupertinoButton(
-                onPressed: () async {
-                  if (formKey.currentState!.saveAndValidate()) {
-                    await _auth
-                        .signIn(
-                            email: formKey.currentState!.value['email'],
-                            password: formKey.currentState!.value['password'])
-                        .then((value) {
-                      Fluttertoast.showToast(
-                          msg: "Successfully logged in",
-                          toastLength: Toast.LENGTH_LONG,
-                          gravity: ToastGravity.CENTER,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.green,
-                          textColor: Colors.white,
-                          fontSize: 16.0);
-                      AutoRouter.of(context)
-                          .replace(HomeRoute(userCredential: value!));
-                    }).catchError((error) {
-                      showCupertinoDialog(
-                          context: context,
-                          builder: (context) => CupertinoAlertDialog(
-                                content: Text(error.toString()),
-                              ));
-                    });
-                  }
-                },
-                color: Colors.blue,
-                child: const Text('Login'),
+              Semantics(
+                label: 'loginbutton',
+                child: CupertinoButton(
+                  onPressed: () async {
+                    if (formKey.currentState!.saveAndValidate()) {
+                      await _auth
+                          .signIn(
+                              email: formKey.currentState!.value['email'],
+                              password: formKey.currentState!.value['password'])
+                          .then((value) {
+                        Fluttertoast.showToast(
+                            msg: "Successfully logged in",
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                        AutoRouter.of(context)
+                            .replace(HomeRoute(userCredential: value!));
+                      }).catchError((error) {
+                        showCupertinoDialog(
+                            context: context,
+                            builder: (context) => CupertinoAlertDialog(
+                                  content: Text(error.toString()),
+                                ));
+                      });
+                    }
+                  },
+                  color: Colors.blue,
+                  child: const Text('Login'),
+                ),
               ),
               const SizedBox(
                 height: 20,

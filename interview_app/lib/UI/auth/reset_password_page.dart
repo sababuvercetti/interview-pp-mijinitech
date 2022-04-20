@@ -43,11 +43,10 @@ class ResetPasswordPage extends ConsumerWidget {
               const FlutterLogo(size: 200),
               FormBuilderTextField(
                 name: 'email',
-                onChanged: (value) => updateEmail(context, value!),
                 decoration: const InputDecoration(labelText: 'Email'),
                 validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
                   FormBuilderValidators.email(),
+                  FormBuilderValidators.required(),
                 ]),
               ),
               const SizedBox(
@@ -61,7 +60,7 @@ class ResetPasswordPage extends ConsumerWidget {
                       email: formKey.currentState!.value['email'],
                     )
                         .then((value) {
-                          Fluttertoast.showToast(
+                      Fluttertoast.showToast(
                           msg: "Check your email",
                           toastLength: Toast.LENGTH_LONG,
                           gravity: ToastGravity.CENTER,
