@@ -30,6 +30,12 @@ class MyApp extends StatelessWidget {
         s.Provider<PasswordProvider>(
           create: (_) => PasswordProvider(),
         ),
+        s.Provider<CodeProvider>(
+          create: (_) => CodeProvider(),
+        ),
+        s.Provider<HomeBottomIndexProvider>(
+          create: (_) => HomeBottomIndexProvider(),
+        ),
       ],
       child: MaterialApp.router(
         title: 'Flutter Interview APP',
